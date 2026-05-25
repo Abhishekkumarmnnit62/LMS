@@ -16,35 +16,43 @@ const quizSchema = new mongoose.Schema({
         required: [true, 'Please provide a title for the quiz'],
         trim: true
     },  
-    questions: [
-        {
-            question: {
-                type: String,
-                required: [true]
+    questions:[{
+    
+    question:{
+        type:String,
+        required:true
+    },
 
-            },
-            options: {
-                type: String,
-                required: true,
-                validate: [array=>array.length === 4, 'Please provide exactly 4 options']
-            },
-            correctAnswer: {
-                type: String,
-                required: true,
-            },
-            explanation: {
-                type: String,
-                default: ''
-            },
-            difficulty: {
-                type: String,
-                enum: ['easy', 'medium', 'hard'],
-                default: 'medium'
-            }
-        }],
+    options:{
+        type:[String],
+
+        validate:[
+            arr=>arr.length===4,
+            'Please provide exactly 4 options'
+        ],
+
+        required:true
+    },
+
+    correctAnswer:{
+        type:String,
+        required:true
+    },
+
+    explanation:{
+        type:String,
+        default:''
+    },
+
+    difficulty:{
+        type:String,
+        enum:['easy','medium','hard'],
+        default:'medium'
+    }
+}],
         userAnswers: [{
             questionIndex: {
-                type: number,
+                type: Number,
                 required: true
             },
             selectedAnswer: {
