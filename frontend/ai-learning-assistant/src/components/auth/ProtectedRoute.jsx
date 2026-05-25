@@ -1,13 +1,13 @@
 import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom';
 import AppLayout from '../layout/AppLayout';
+import { useAuth } from '../../context/AuthContext';
 
 const ProtectedRoute = () => {
 
 
-    const isAuthenticated = true; // Replace with actual authentication logic
-  const loding = false; // Replace with actual loading state
-  if (loding) {
+    const { isAuthenticated,loading } = useAuth();
+  if (loading) {
     return (
     <div className="flex items-center justify-center h-screen">
       <p>Loading...</p>
