@@ -1,5 +1,3 @@
-// Header.jsx
-
 import React from "react";
 
 import { useAuth } from "../../context/AuthContext";
@@ -10,11 +8,12 @@ import {
     Menu
 } from "lucide-react";
 
-const Header = ({ toggleSidebar }) => {
+const Header=({toggleSidebar})=>{
 
-    const { user } = useAuth();
+    const { user }=useAuth();
+    console.log(user);
 
-    return (
+    return(
 
         <header className="sticky top-0 z-40 w-full h-16 bg-white/80 backdrop-blur-xl border-b border-slate-200/60">
 
@@ -68,11 +67,11 @@ const Header = ({ toggleSidebar }) => {
                             <div>
 
                                 <p className="text-sm font-semibold text-slate-900">
-                                    {user?.username || 'User'}
+                                    {user?.username || "User"}
                                 </p>
 
                                 <p className="text-xs text-slate-500">
-                                    {user?.email || 'user@example.com'}
+                                    {user?.email || "user@example.com"}
                                 </p>
 
                             </div>
@@ -86,6 +85,7 @@ const Header = ({ toggleSidebar }) => {
             </div>
 
         </header>
+
     );
 };
 

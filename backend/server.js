@@ -44,8 +44,15 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 //Static folder for uploads
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+console.log(path.join(process.cwd(),'uploads'));
+const uploadsPath=path.join(__dirname,'..','uploads');
 
+console.log('Serving uploads from:',uploadsPath);
+
+app.use(
+    '/uploads',
+    express.static(uploadsPath)
+);
 
 //Routes
 app.use('/api/auth', authRoutes);

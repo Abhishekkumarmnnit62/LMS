@@ -40,25 +40,26 @@ export const uploadDocument=async(req,res,next)=>{
             `${baseUrl}/uploads/${req.file.filename}`;
 
         // Create document record
-        const document=await Document.create({
+const document=await Document.create({
 
-            userId:req.user._id,
+    userId:req.user._id,
 
-            title,
+    title,
 
-            // Original uploaded filename
-            filename:req.file.originalname,
+    // Original uploaded filename
+    filename:req.file.originalname,
 
-            // Actual filesystem path
-            filePath:req.file.path,
+    // Relative path for browser access
+    filePath:`uploads/documents/${req.file.filename}`,
 
-            // Public URL
-            fileUrl:fileUrl,
+    // Public URL
+    fileUrl:fileUrl,
 
-            fileSize:req.file.size,
+    fileSize:req.file.size,
 
-            status:'processing'
-        });
+    status:'processing'
+});
+        
 
         // Process PDF in background
         processPDF(document._id,req.file.path)
@@ -238,7 +239,7 @@ export const getDocument=async(req,res,next)=>{
 
         documentData.flashcardCount=flashcardCount;
         documentData.quizCount=quizCount;
-
+         
         res.status(200).json({
             success:true,
             data:documentData
