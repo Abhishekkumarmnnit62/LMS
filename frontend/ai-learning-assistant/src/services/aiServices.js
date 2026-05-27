@@ -1,5 +1,5 @@
 import axiosInstance from "../utils/axiosInstance";
-import { API_PATHS } from "../utils/apiPaths";
+import { API_PATHS } from "../utils/apiPath.js";
 
 const generateFlashcards = async (documentId,options) => {
     try {
