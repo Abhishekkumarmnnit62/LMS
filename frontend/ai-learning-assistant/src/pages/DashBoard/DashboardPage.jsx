@@ -12,7 +12,6 @@ import {
     TrendingUp,
     Clock
 } from 'lucide-react';
-
 const DashboardPage = () => {
 
     const [dashboardData, setDashboardData] = useState(null);
