@@ -16,18 +16,20 @@ import {
     X
 } from 'lucide-react';
 
-const Sidebar = ({ isSidebarOpen,toggleSidebar }) => {
+const Sidebar=({isSidebarOpen,toggleSidebar})=>{
 
-    const { logout } = useAuth();
+    const { logout }=useAuth();
 
-    const navigate = useNavigate();
+    const navigate=useNavigate();
 
-    const handleLogout = () => {
+    const handleLogout=()=>{
+
         logout();
         navigate('/login');
+
     };
 
-    const navLinks = [
+    const navLinks=[
         {
             to:'/dashboard',
             icon:LayoutDashboard,
@@ -50,7 +52,8 @@ const Sidebar = ({ isSidebarOpen,toggleSidebar }) => {
         },
     ];
 
-    return (
+    return(
+
         <>
 
             {/* Mobile Overlay */}
@@ -66,7 +69,7 @@ const Sidebar = ({ isSidebarOpen,toggleSidebar }) => {
             ></div>
 
             <aside
-                className={`fixed top-0 left-0 h-full w-64 bg-white/90 backdrop-blur-lg border-r border-slate-200/60 z-50 md:relative md:w-64 md:shrink-0 md:flex md:flex-col md-translate-x-0  transition-transform duration-300 ease-in-out ${
+                className={`fixed top-0 left-0 h-full w-64 bg-white/90 backdrop-blur-lg border-r border-slate-200/60 z-50 md:relative md:w-64 md:shrink-0 md:flex md:flex-col md:translate-x-0 transition-transform duration-300 ease-in-out ${
                     isSidebarOpen
                         ? 'translate-x-0'
                         : '-translate-x-full'
@@ -97,7 +100,7 @@ const Sidebar = ({ isSidebarOpen,toggleSidebar }) => {
 
                     <button
                         onClick={toggleSidebar}
-                        className="md:hidden text-slate-500 hover:text-slate-900 hover:bg-slate-800"
+                        className="md:hidden text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-lg p-1 transition-all duration-200"
                     >
 
                         <X size={24} />
@@ -110,23 +113,24 @@ const Sidebar = ({ isSidebarOpen,toggleSidebar }) => {
 
                 <nav className="flex-1 px-3 py-6 space-y-1.5">
 
-                    {navLinks.map((link) => (
+                    {navLinks.map((link)=>(
 
                         <NavLink
                             key={link.to}
                             to={link.to}
                             onClick={toggleSidebar}
-                            className={({ isActive }) =>
+                            className={({isActive})=>
                                 `group flex items-center gap-3 px-4 py-2.5 text-sm font-semibold rounded-xl transition-all duration-200 ${
                                     isActive
-                                        ? 'bg-linear-to-r from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/25'
+                                        ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/25'
                                         : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900'
                                 }`
                             }
                         >
 
-                            {({ isActive }) => (
+                            {({isActive})=>(
                                 <>
+
                                     <link.icon
                                         size={18}
                                         strokeWidth={2.5}
@@ -138,6 +142,7 @@ const Sidebar = ({ isSidebarOpen,toggleSidebar }) => {
                                     />
 
                                     {link.text}
+
                                 </>
                             )}
 
@@ -153,7 +158,7 @@ const Sidebar = ({ isSidebarOpen,toggleSidebar }) => {
 
                     <button
                         onClick={handleLogout}
-                        className="group flex items-center gap-3 w-full px-4 py-2.5 text-sm font-semibold text-slare-700 hover:bg-red-50 hover:bg-red-50 hover:text-red-600 rounded-xl transition-all duration-200"
+                        className="group flex items-center gap-3 w-full px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-red-50 hover:text-red-600 rounded-xl transition-all duration-200"
                     >
 
                         <LogOut
@@ -171,6 +176,7 @@ const Sidebar = ({ isSidebarOpen,toggleSidebar }) => {
             </aside>
 
         </>
+
     );
 };
 
