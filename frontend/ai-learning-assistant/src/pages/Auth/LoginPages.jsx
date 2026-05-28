@@ -6,8 +6,8 @@ import { BrainCircuit, Mail, Lock, ArrowRight } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('alex@timetoprogram.com');
-  const [password, setPassword] = useState('Test@123');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [focusedField, setFocusedField] = useState(null);
@@ -21,8 +21,9 @@ const LoginPage = () => {
     setLoading(true);
 
     try {
-      const { token, user } = await authService.login(email, password);
-      login(user, token);
+      const response = await authService.login(email,password);
+
+login(response.data,response.token);
       toast.success('Logged in successfully!');
       navigate('/');
     } catch (err) {

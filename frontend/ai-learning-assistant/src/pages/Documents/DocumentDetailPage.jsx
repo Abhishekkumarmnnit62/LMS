@@ -4,6 +4,7 @@ import documentService from '../../services/documentService.js';
 import Spinner from '../../components/common/Spinner';
 import PageHeader from '../../components/common/PageHeader';
 import Tabs from '../../components/common/Tabs';
+import ChatInterface from '../../components/chat/ChatInterface';
 
 import toast from 'react-hot-toast';
 import {
@@ -109,7 +110,9 @@ console.log(getPdfUrl());
         );
     };
 
-    const renderChat = () => "renderChat";
+    const renderChat = () => {
+        return <ChatInterface/>
+    };
     const renderAIActions = () => "renderAIActions";
     const renderFlashcardsTab = () => "renderFlashcardsTab";
     const renderQuizzesTab = () => "renderQuizzesTab";
