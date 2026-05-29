@@ -5,12 +5,15 @@ import Spinner from '../../components/common/Spinner';
 import PageHeader from '../../components/common/PageHeader';
 import Tabs from '../../components/common/Tabs';
 import FlashcardManager from "../../components/flashcards/FlashcardManager";
+import ChatInterface from '../../components/chat/ChatInterface';
+import MarkdownRenderer from '../../components/common/MarkDownRenderer'
 
 import toast from 'react-hot-toast';
 import {
     ArrowLeft,
     ExternalLink,
 } from 'lucide-react';
+import AIActions from '../../components/ai/AIActions.jsx';
 
 const DocumentDetailPage = () => {
     const { id } = useParams();
@@ -110,9 +113,13 @@ console.log(getPdfUrl());
         );
     };
 
-    const renderChat = () => "renderChat";
-    const renderAIActions = () => "renderAIActions";
-    const renderFlashcardsTab = () => {
+    const renderChat = () => {
+        return <ChatInterface/>
+    };
+    const renderAIActions = () => {
+        return <AIActions/>
+    };
+     const renderFlashcardsTab = () => {
         return <FlashcardManager documentId={id} />
     }
     const renderQuizzesTab = () => "renderQuizzesTab";
