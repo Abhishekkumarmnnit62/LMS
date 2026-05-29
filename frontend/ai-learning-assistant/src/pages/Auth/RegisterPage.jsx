@@ -146,7 +146,7 @@ const RegisterPage = () => {
               </>
             ) : (
               <>
-                Sign in
+                Sign up
                 <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
               </>
             )}
@@ -156,12 +156,12 @@ const RegisterPage = () => {
         {/* Footer Link layout matches your screenshot */}
         <div className="mt-8 text-center">
           <p className="text-xs text-slate-500">
-            Don't have an account?{" "}
+            Already have an account?{" "}
             <Link
               to="/login"
               className="font-semibold text-[#00BA74] hover:underline transition-all"
             >
-              Sign up
+              Sign in
             </Link>
           </p>
         </div>
