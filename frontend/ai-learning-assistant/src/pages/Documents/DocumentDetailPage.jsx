@@ -4,6 +4,7 @@ import documentService from '../../services/documentService.js';
 import Spinner from '../../components/common/Spinner';
 import PageHeader from '../../components/common/PageHeader';
 import Tabs from '../../components/common/Tabs';
+import FlashcardManager from "../../components/flashcards/FlashcardManager";
 import ChatInterface from '../../components/chat/ChatInterface';
 import MarkdownRenderer from '../../components/common/MarkDownRenderer'
 
@@ -118,7 +119,9 @@ console.log(getPdfUrl());
     const renderAIActions = () => {
         return <AIActions/>
     };
-    const renderFlashcardsTab = () => "renderFlashcardsTab";
+     const renderFlashcardsTab = () => {
+        return <FlashcardManager documentId={id} />
+    }
     const renderQuizzesTab = () => "renderQuizzesTab";
 
     // Dynamic rendering helper so content only updates/calculates for the active view
