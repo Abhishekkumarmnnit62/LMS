@@ -7,6 +7,7 @@ import Tabs from '../../components/common/Tabs';
 import FlashcardManager from "../../components/flashcards/FlashcardManager";
 import ChatInterface from '../../components/chat/ChatInterface';
 import MarkdownRenderer from '../../components/common/MarkDownRenderer'
+import QuizManager from '../../components/quizzes/QuizManager';
 
 import toast from 'react-hot-toast';
 import {
@@ -122,7 +123,9 @@ console.log(getPdfUrl());
      const renderFlashcardsTab = () => {
         return <FlashcardManager documentId={id} />
     }
-    const renderQuizzesTab = () => "renderQuizzesTab";
+    const renderQuizzesTab = () =>{
+        return <QuizManager documentId={id} />
+    };
 
     // Dynamic rendering helper so content only updates/calculates for the active view
     const renderTabContent = () => {
