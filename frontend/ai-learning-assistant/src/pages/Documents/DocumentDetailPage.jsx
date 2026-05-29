@@ -4,6 +4,7 @@ import documentService from '../../services/documentService.js';
 import Spinner from '../../components/common/Spinner';
 import PageHeader from '../../components/common/PageHeader';
 import Tabs from '../../components/common/Tabs';
+import FlashcardManager from "../../components/flashcards/FlashcardManager";
 
 import toast from 'react-hot-toast';
 import {
@@ -111,7 +112,9 @@ console.log(getPdfUrl());
 
     const renderChat = () => "renderChat";
     const renderAIActions = () => "renderAIActions";
-    const renderFlashcardsTab = () => "renderFlashcardsTab";
+    const renderFlashcardsTab = () => {
+        return <FlashcardManager documentId={id} />
+    }
     const renderQuizzesTab = () => "renderQuizzesTab";
 
     // Dynamic rendering helper so content only updates/calculates for the active view
