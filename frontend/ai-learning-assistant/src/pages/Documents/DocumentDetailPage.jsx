@@ -15,6 +15,7 @@ import {
     ExternalLink,
 } from 'lucide-react';
 import AIActions from '../../components/ai/AIActions.jsx';
+import QuizManager from '../../components/quizzes/QuizManager.jsx';
 
 const DocumentDetailPage = () => {
     const { id } = useParams();
@@ -123,10 +124,9 @@ console.log(getPdfUrl());
      const renderFlashcardsTab = () => {
         return <FlashcardManager documentId={id} />
     }
-    const renderQuizzesTab = () =>{
-        return <QuizManager documentId={id} />
-    };
-
+    const renderQuizzesTab = () => {
+        return <QuizManager documentId={id}/>
+    }
     // Dynamic rendering helper so content only updates/calculates for the active view
     const renderTabContent = () => {
         switch (activeTab) {

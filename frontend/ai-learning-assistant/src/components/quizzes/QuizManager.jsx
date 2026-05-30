@@ -11,7 +11,6 @@ import QuizCard from './QuizCard';
 import EmptyState from '../common/EmptyState';
 
 const QuizManager = ({ documentId }) => {
-  // --- State Declarations ---
   const [quizzes, setQuizzes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [generating, setGenerating] = useState(false);
@@ -22,9 +21,9 @@ const QuizManager = ({ documentId }) => {
   const [deleting, setDeleting] = useState(false);
   const [selectedQuiz, setSelectedQuiz] = useState(null);
 
-  // --- Side Effects & Fetching ---
   const fetchQuizzes = async () => {
     setLoading(true);
+
     try {
       const data = await quizService.getQuizzesForDocument(documentId);
       setQuizzes(data.data);
@@ -42,12 +41,13 @@ const QuizManager = ({ documentId }) => {
     }
   }, [documentId]);
 
-  // --- Quiz Generation Handlers ---
   const handleGenerateQuiz = async (e) => {
     e.preventDefault();
     setGenerating(true);
+
     try {
       await aiService.generateQuiz(documentId, { numQuestions });
+
       toast.success('Quiz generated successfully!');
       setIsGenerateModalOpen(false);
       fetchQuizzes();
@@ -58,7 +58,6 @@ const QuizManager = ({ documentId }) => {
     }
   };
 
-  // --- Quiz Deletion Handlers ---
   const handleDeleteRequest = (quiz) => {
     setSelectedQuiz(quiz);
     setIsDeleteModalOpen(true);
@@ -66,13 +65,19 @@ const QuizManager = ({ documentId }) => {
 
   const handleConfirmDelete = async () => {
     if (!selectedQuiz) return;
+
     setDeleting(true);
+
     try {
-      await quizService.deleteQuiz(selectedQuiz.id);
-      toast.success('Quiz deleted successfully!');
+      await quizService.deleteQuiz(selectedQuiz._id);
+
+      toast.success(`'${selectedQuiz.title || 'Quiz'}' deleted.`);
+
       setIsDeleteModalOpen(false);
       setSelectedQuiz(null);
-      fetchQuizzes();
+
+      // Keeping this line exactly as requested
+      setQuizzes(quizzes.filter(q => q._id !== selectedQuiz._id));
     } catch (error) {
       toast.error(error.message || 'Failed to delete quiz.');
     } finally {
@@ -80,7 +85,6 @@ const QuizManager = ({ documentId }) => {
     }
   };
 
-  // --- Conditional Rendering ---
   const renderQuizContent = () => {
     if (loading) {
       return <Spinner />;
@@ -96,19 +100,18 @@ const QuizManager = ({ documentId }) => {
     }
 
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {quizzes.map((quiz) => (
-          <QuizCard 
-            key={quiz.id} 
-            quiz={quiz} 
-            onDelete={() => handleDeleteRequest(quiz)} 
+          <QuizCard
+            key={quiz._id}
+            quiz={quiz}
+            onDelete={() => handleDeleteRequest(quiz)}
           />
         ))}
       </div>
     );
   };
 
-  // --- Main Component Render ---
   return (
     <div className="bg-white border border-neutral-200 rounded-lg p-6">
       <div className="flex justify-end gap-2 mb-4">
@@ -120,27 +123,33 @@ const QuizManager = ({ documentId }) => {
 
       {renderQuizContent()}
 
-      {/* --- Generate Quiz Modal (From Screenshots) --- */}
+      {/* Generate Quiz Modal */}
       <Modal
         isOpen={isGenerateModalOpen}
         onClose={() => setIsGenerateModalOpen(false)}
         title="Generate New Quiz"
       >
-        <form onSubmit={handleGenerateQuiz} className="">
+        <form onSubmit={handleGenerateQuiz} className="space-y-4">
           <div>
-            <label className="">
+            <label className="block text-xs font-medium text-neutral-700 mb-1.5">
               Number of Questions
             </label>
+
             <input
               type="number"
               value={numQuestions}
-              onChange={(e) => setNumQuestions(Math.max(1, parseInt(e.target.value) || 1))}
+              onChange={(e) =>
+                setNumQuestions(
+                  Math.max(1, parseInt(e.target.value) || 1)
+                )
+              }
               min="1"
               required
-              className=""
+              className="w-full h-9 px-3 border border-neutral-200 rounded-lg bg-white text-sm text-neutral-900 placeholder-neutral-400 transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-[#00d492] focus:border-transparent"
             />
           </div>
-          <div className="">
+
+          <div className="flex justify-end gap-2 pt-2">
             <Button
               type="button"
               variant="secondary"
@@ -149,6 +158,7 @@ const QuizManager = ({ documentId }) => {
             >
               Cancel
             </Button>
+
             <Button type="submit" disabled={generating}>
               {generating ? 'Generating...' : 'Generate'}
             </Button>
@@ -156,27 +166,36 @@ const QuizManager = ({ documentId }) => {
         </form>
       </Modal>
 
-      {/* --- Delete Confirmation Modal --- */}
+      {/* Delete Confirmation Modal */}
       <Modal
         isOpen={isDeleteModalOpen}
-        onClose={() => { if (!deleting) setIsDeleteModalOpen(false); }}
-        title="Delete Quiz"
+        onClose={() => setIsDeleteModalOpen(false)}
+        title="Confirm Delete Quiz"
       >
         <div className="space-y-4">
-          <p>Are you sure you want to delete this quiz? This action cannot be undone.</p>
-          <div className="flex justify-end gap-2">
+          <p className="text-sm text-neutral-600">
+            Are you sure you want to delete this quiz:
+            <span className="font-semibold text-neutral-900">
+              {' '}
+              {selectedQuiz?.title || 'this quiz'}
+            </span>
+            ? This action cannot be undone.
+          </p>
+
+          <div className="flex justify-end gap-2 pt-2">
             <Button
               type="button"
-              variant="secondary"
+              variant="outline"
               onClick={() => setIsDeleteModalOpen(false)}
               disabled={deleting}
             >
               Cancel
             </Button>
-            <Button 
-              type="button" 
-              onClick={handleConfirmDelete} 
+
+            <Button
+              onClick={handleConfirmDelete}
               disabled={deleting}
+              className="bg-red-500 hover:bg-red-600 active:bg-red-700 focus:ring-red-500"
             >
               {deleting ? 'Deleting...' : 'Delete'}
             </Button>
