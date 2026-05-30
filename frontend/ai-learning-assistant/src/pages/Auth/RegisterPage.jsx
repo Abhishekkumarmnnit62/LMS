@@ -48,10 +48,10 @@ const RegisterPage = () => {
             <BrainCircuit className="w-6 h-6 text-white" strokeWidth={2} />
           </div>
           <h1 className="text-2xl font-bold text-slate-900 tracking-tight mb-1">
-            Welcome back
+            Create An Account
           </h1>
           <p className="text-slate-400 text-xs">
-            Sign in to continue your journey
+            Start your AI-powered learning experience 
           </p>
         </div>
 
@@ -146,7 +146,7 @@ const RegisterPage = () => {
               </>
             ) : (
               <>
-                Sign in
+                Create account
                 <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
               </>
             )}
@@ -156,12 +156,12 @@ const RegisterPage = () => {
         {/* Footer Link layout matches your screenshot */}
         <div className="mt-8 text-center">
           <p className="text-xs text-slate-500">
-            Don't have an account?{" "}
+            Already have an account?{" "}
             <Link
               to="/login"
               className="font-semibold text-[#00BA74] hover:underline transition-all"
             >
-              Sign up
+              Sign in
             </Link>
           </p>
         </div>
