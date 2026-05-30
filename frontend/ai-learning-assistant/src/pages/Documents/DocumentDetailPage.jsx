@@ -14,8 +14,7 @@ import {
     ArrowLeft,
     ExternalLink,
 } from 'lucide-react';
-import AIActions from '../../components/ai/AIActions.jsx';
-import QuizManager from '../../components/quizzes/QuizManager.jsx';
+import AIActions from '../../components/ai/AIActions';
 
 const DocumentDetailPage = () => {
     const { id } = useParams();
