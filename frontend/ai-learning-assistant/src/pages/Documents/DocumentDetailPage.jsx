@@ -7,6 +7,7 @@ import Tabs from '../../components/common/Tabs';
 import FlashcardManager from "../../components/flashcards/FlashcardManager";
 import ChatInterface from '../../components/chat/ChatInterface';
 import MarkdownRenderer from '../../components/common/MarkDownRenderer'
+import QuizManager from '../../components/quizzes/QuizManager';
 
 import toast from 'react-hot-toast';
 import {
