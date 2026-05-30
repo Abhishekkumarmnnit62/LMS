@@ -4,82 +4,84 @@ import { Play, BarChart2, Trash2, Award } from 'lucide-react';
 import moment from 'moment';
 
 const QuizCard = ({ quiz, onDelete }) => {
-  // Hardcoded to true for demo purposes to force display matching the screenshot
-  const hasUserAnswers = quiz?.userAnswers?.length > 0 || true; 
-  const score = quiz?.score !== undefined ? quiz.score : 0;
-
   return (
-    <div className="relative group bg-white border-2 border-[#22c55e]/30 rounded-2xl p-6 w-full max-w-[340px] shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+    <div className="relative group bg-white/80 backdrop-blur-xl border-2 border-slate-200 hover:border-emerald-300 rounded-2xl p-4 hover:shadow-lg hover:shadow-emerald-500/10 transition-all flex flex-col justify-between">
       
-      {/* Delete Button (Top Right corner with pink hover circle) */}
+      {/* Delete Button */}
       <button
         onClick={(e) => {
           e.stopPropagation();
           onDelete(quiz);
         }}
-        className="absolute top-5 right-5 text-neutral-400 hover:text-red-500 p-2 rounded-full hover:bg-red-50/80 border border-transparent hover:border-red-100 transition-all"
+        className="absolute top-4 right-4 p-2 text-slate-400 hover:text-rose-500 rounded-lg transition-all duration-200 opacity-0 group-hover:opacity-100"
         title="Delete Quiz"
       >
-        <Trash2 size={16} strokeWidth={2.5} />
+        <Trash2 size={16} strokeWidth={2} />
       </button>
 
-      {/* Card Content Top Half */}
+      {/* Card Content */}
       <div className="space-y-4">
-        {/* Mint Status Badge / Score Indicator */}
-        {hasUserAnswers && (
-          <div className="flex items-center">
-            <div className="inline-flex items-center gap-1 px-3 py-1 bg-[#e8fbf3] text-[#059669] rounded-full text-xs font-semibold border border-[#a7f3d0]/40">
+        
+        {/* Score Badge */}
+        {quiz?.score !== undefined && (
+          <div className="inline-flex items-center gap-1.5 py-1 rounded-lg text-xs font-semibold">
+            <div className="flex items-center gap-1.5 px-3 py-1 bg-emerald-50 border border-emerald-200 rounded-lg">
               <Award size={13} strokeWidth={2.5} />
-              <span>Score: {score}</span>
+              <span className="text-emerald-700">
+                Score: {quiz.score}
+              </span>
             </div>
           </div>
         )}
 
-        {/* Title and Metadata */}
+        {/* Title & Metadata */}
         <div className="pt-1">
-          <h3 
-            className="text-[17px] font-bold text-neutral-900 tracking-tight pr-8"
-            title={quiz?.title}
+          <h3
+            className="text-base font-semibold text-slate-900 mb-1 line-clamp-2"
+            title={quiz.title}
           >
-            {quiz?.title || "React Js Guide Quize"}
+            {quiz.title ||
+              `Quiz-${moment(quiz.createdAt).format('MMM D, YYYY')}`}
           </h3>
-          <p className="text-[11px] font-bold text-neutral-400 tracking-wider uppercase mt-1">
-            CREATED {quiz?.createdAt ? moment(quiz.createdAt).format("MMM D, YYYY") : "NOV 22, 2025"}
+
+          <p className="text-xs font-medium text-slate-500 tracking-wide uppercase">
+            CREATED {moment(quiz.createdAt).format('MMM D, YYYY')}
           </p>
         </div>
 
-        {/* Quiz Information Stats Box */}
-        <div className="pt-2">
-          <div className="inline-block px-3 py-2 bg-[#f8fafc] border border-neutral-100 rounded-lg text-sm font-semibold text-neutral-800 shadow-200">
-            {quiz?.questions?.length || 5}{" "}
-            {quiz?.questions?.length === 1 ? "Question" : "Questions"}
+        {/* Quiz Stats */}
+        <div className="flex items-center gap-3 pt-2 border-t border-slate-100">
+          <div className="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg">
+            <span className="text-sm font-semibold text-slate-700">
+              {quiz?.questions?.length || 0}{' '}
+              {quiz?.questions?.length === 1 ? 'Question' : 'Questions'}
+            </span>
           </div>
         </div>
       </div>
 
-      {/* Action Button Segment */}
-      <div className="mt-6">
-        {hasUserAnswers ? (
-          /* View Results Mode */
-          <Link to={`/quizzes/${quiz?._id || 'demo'}/results`} className="block">
-            <button className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-[#f0f4f9] hover:bg-[#e4ecf5] text-neutral-800 text-sm font-bold rounded-xl transition-colors focus:outline-none">
-              <BarChart2 size={16} strokeWidth={2.5} />
+      {/* Action Button */}
+      <div className="mt-2 pt-4 border-t border-slate-100">
+        {quiz?.userAnswers?.length > 0 ? (
+          <Link to={`/quizzes/${quiz?._id}/results`}>
+            <button className="group/btn w-full inline-flex items-center justify-center gap-2 h-11 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-sm rounded-xl transition-all active:scale-95 cursor-pointer">
+              <BarChart2 className="w-4 h-4" strokeWidth={2.5} />
               View Results
             </button>
           </Link>
         ) : (
-          /* Start Quiz Mode */
-          <Link to={`/quizzes/${quiz?._id || 'demo'}`} className="block">
-            <button className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-[#059669] hover:bg-[#047857] text-white text-sm font-bold rounded-xl transition-all shadow-sm focus:outline-none">
-              <span className="flex items-center justify-center gap-2">
-                <Play size={15} strokeWidth={2.5} fill="currentColor" />
+          <Link to={`/quizzes/${quiz?._id}`}>
+            <button className="group/btn relative w-full h-11 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white text-sm font-semibold rounded-xl transition-all shadow-lg shadow-emerald-500/25 active:scale-95 overflow-hidden">
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                <Play className="w-4 h-4" strokeWidth={2.5} />
                 Start Quiz
               </span>
+
+              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700" />
             </button>
           </Link>
         )}
       </div>
-
     </div>
   );
 };
