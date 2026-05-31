@@ -15,7 +15,7 @@ const Header=({toggleSidebar})=>{
 
     return(
 
-        <header className="sticky top-0 z-40 w-full h-16 bg-white/80 backdrop-blur-xl border-b border-slate-200/60">
+        <header className="sticky top-0 z-40 w-full h-16 bg-white/90 backdrop-blur-xl border-b border-slate-200/60">
 
             <div className="flex items-center justify-between h-full px-6">
 
