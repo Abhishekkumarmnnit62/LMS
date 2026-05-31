@@ -1,8 +1,8 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
-@theme{
-  --font-display:  "Urbanist", sans-serif;
+
+@theme {
+  --font-display: "Urbanist", sans-serif;
   --breakpoint-3xl: 1920px;
   --color-primary: #FF9324;
 }
@@ -10,9 +10,14 @@
 @layer base {
   body {
     font-family: var(--font-display);
+    background-color: #f1f5f9;
   }
-  body
-  {
-    background-color: #fcfbfc;
-  }
+
+  .bg-white {
+  background-color: #F3F4F6 !important;
+}
+
+.bg-white\/80 {
+  background-color: rgba(243,244,246,0.8) !important;
+}
 }

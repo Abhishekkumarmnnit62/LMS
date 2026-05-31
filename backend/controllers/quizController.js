@@ -266,6 +266,7 @@ export const getQuizResults=async(
             success:true,
 
             data:{
+                quiz:{
                 id:quiz._id,
                 title:quiz.title,
 
@@ -280,8 +281,10 @@ export const getQuizResults=async(
                 completedAt:
                     quiz.completedAt,
 
-                results:detailedResults
-            }
+                
+            },
+            results:detailedResults}
+
         });
 
     }catch(error){
