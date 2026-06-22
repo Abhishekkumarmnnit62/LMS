@@ -96,7 +96,7 @@ console.log("Score:",score);
           <p className="text-sm font-semibold text-slate-600 uppercase tracking-wide mb-2">
             Your Score
           </p>
-          <div className={`inline-block text-5xl font-bold bg-gradient-to-r ${getScoreColor(score)} bg-clip-text text-transparent mb-3`}>
+          <div className={`inline-block text-5xl font-bold bg-linear-to-r ${getScoreColor(score)} bg-clip-text text-transparent mb-3`}>
             {score}%
           </div>
           <p className="text-lg font-medium text-slate-700">
