@@ -23,7 +23,7 @@ const RegisterPage = () => {
     }
 
     setError('');
-    loading(true);
+    setLoading(true);
 
     try {
       await authService.register(username, email, password);
