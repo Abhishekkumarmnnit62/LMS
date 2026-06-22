@@ -47,6 +47,8 @@ const QuizResultPage = () => {
 
   const { data: { quiz, results: detailedResults } } = results;
   const score = quiz.score;
+  console.log("Quiz:",quiz);
+console.log("Score:",score);
   const totalQuestions = detailedResults.length;
   const correctAnswers = detailedResults.filter(r => r.isCorrect).length;
   const incorrectAnswers = totalQuestions - correctAnswers;
@@ -197,7 +199,7 @@ const QuizResultPage = () => {
                           ?'text-emerald-900'
                           :isWrongAnswer
                           ?'text-rose-900'
-                          :' text-slate-700'
+                          :'text-slate-700'
                         }`}>
                           {option}
                         </span>
