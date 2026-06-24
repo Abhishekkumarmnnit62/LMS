@@ -8,7 +8,7 @@ Upload study materials and instantly generate AI-powered summaries, flashcards, 
 
 Built with **React, Node.js, Express, MongoDB, and Google Gemini AI**.
 
-![Application Overview](docs/app-preview-collage.png)
+
 
 </div>
 
