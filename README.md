@@ -1,4 +1,5 @@
-# 🎓 AI Learning Assistant
+# 🎓 StudBud
+
 
 <div align="center">
 
@@ -387,7 +388,7 @@ This project helped me gain practical experience in:
 
 # 👨‍💻 Author
 
-## NIKHIL KUMAR PANDEY
+## ABHISHEK KUMAR and NIKHIL KUMAR PANDEY
 
 If you found this project useful, consider giving it a ⭐ on GitHub.
 
