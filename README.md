@@ -1,4 +1,5 @@
-# 🎓 AI Learning Assistant
+# 🎓 StudBud
+
 
 <div align="center">
 
@@ -8,7 +9,7 @@ Upload study materials and instantly generate AI-powered summaries, flashcards, 
 
 Built with **React, Node.js, Express, MongoDB, and Google Gemini AI**.
 
-![Application Overview](docs/app-preview-collage.png)
+
 
 </div>
 
@@ -387,7 +388,7 @@ This project helped me gain practical experience in:
 
 # 👨‍💻 Author
 
-## NIKHIL KUMAR PANDEY
+## ABHISHEK KUMAR and NIKHIL KUMAR PANDEY
 
 If you found this project useful, consider giving it a ⭐ on GitHub.
 
